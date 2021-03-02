@@ -8,9 +8,3 @@ Includes the following default plugin:
 - wp-mail-smtp (Usefull plugin for sending mail and making sure that it actually arrives)
 
 We have removed Askimet and Hello Dolly from the Wordpress installation
-
-
-
-### TODO:
-- [ ] Docker examples
-- [ ] Docker-compose example

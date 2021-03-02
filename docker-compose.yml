@@ -1,0 +1,31 @@
+  GNU nano 4.8                                                                                                                                                                                                                              docker-compose.yml
+version: "3"
+
+services:
+   wordpress_db:
+     image: mariadb:latest
+     volumes:
+       - db:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: ROOT_PASSWORD
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: wordpress
+       MYSQL_PASSWORD: PASSWORD
+     container_name: wordpress_db
+   wordpress:
+     depends_on:
+       - wordpress_db
+     image: roefja/wordpress:latest
+     volumes:
+       - ./wp-content:/var/www/html/wp-content
+     expose:
+       - 80
+     restart: always
+     container_name: wordpress
+     environment:
+       WORDPRESS_DB_HOST: wordpress_db:3306
+       WORDPRESS_DB_USER: wordpress
+       WORDPRESS_DB_PASSWORD: PASSWORD
+volumes:
+    db:
