@@ -1,30 +1,8 @@
 #!/bin/bash
 
-CURRENT=`pwd`
-BASENAME=`basename "$CURRENT"`
+BASENAME='wordpress'
+PROJECT='library'
 
-version=''
-
-while getopts ":v:" opt; do
-  case ${opt} in
-    v )
-      version=$OPTARG
-      ;;
-    \? )
-      echo "Invalid option: $OPTARG" 1>&2
-      ;;
-    : )
-      echo "Invalid option: $OPTARG requires an argument" 1>&2
-      ;;
-  esac
-done
-shift $((OPTIND -1))
-
-docker build -q -t registry.roefja.dev/library/"$BASENAME" .
-
-if [ -n "${version}" ]; then
-docker tag registry.roefja.dev/library/"$BASENAME" registry.roefja.dev/library/"$BASENAME":v-$version
-fi
-
-
-docker push -q --all-tags registry.roefja.dev/library/"$BASENAME" 
+# We are publishing via our own registry. Our own registry replicates to the public Docker Hub Repo
+docker build -q -t registry.roefja.dev/"$PROJECT"/"$BASENAME" .
+docker push -q registry.roefja.dev/library/"$BASENAME" 
