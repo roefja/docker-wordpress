@@ -17,7 +17,7 @@ RUN mkdir -p /usr/src/wordpress/wp-content/plugins/ && \
 # Add application
 WORKDIR /var/www/html
 
-# Copy WordPress install scriptnano do
+# Copy WordPress install script
 COPY ./wordpress-install.sh /temp/
 
 # Configure supervisord
