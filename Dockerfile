@@ -1,4 +1,4 @@
-FROM registry.roefja.dev/library/nginx-php
+FROM roefja/nginx-php
 
 USER root
 
