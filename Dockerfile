@@ -9,7 +9,6 @@ RUN apk --no-cache add php7-exif php7-fileinfo php7-imagick php7-zip php7-iconv
 RUN mkdir -p /usr/src/wordpress/wp-content/plugins/ && \
   chown -R nginx.nginx /usr/src/wordpress/wp-content/plugins/ && \
   cd /usr/src/wordpress/wp-content/plugins/ && \ 
-  wget https://downloads.wordpress.org/plugin/wp-mail-smtp.zip && \
   wget https://downloads.wordpress.org/plugin/classic-editor.zip && \
   wget https://downloads.wordpress.org/plugin/nginx-cache.zip && \
   cd /usr/src/wordpress/wp-content/plugins/ && sh -c 'unzip -q "*.zip"' && rm *.zip
