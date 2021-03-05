@@ -19,6 +19,9 @@ WORKDIR /var/www/html
 # Copy WordPress install script
 COPY ./wordpress-install.sh /temp/
 
+# Copy Extra WP NGINX conf
+COPY ./config/wordpress.conf /etc/nginx/conf.d/wordpress.conf
+
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
