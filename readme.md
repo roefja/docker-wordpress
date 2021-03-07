@@ -22,3 +22,5 @@ PHP version 8 is used in all images, unless php-7 is includes in the tag (ex: ph
 - WORDPRESS_DB_CHARSET _Default: utf-8_
 - WORDPRESS_DB_COLLATE _Default: empty_
 - WORDPRESS_TABLE_PREFIX _Default: wp_
+
+WP Image Source code available on [GitHub](https://github.com/roefja/docker-wordpress)
