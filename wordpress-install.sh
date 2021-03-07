@@ -43,17 +43,9 @@ set_config() {
     key="$1"
     value="$2"
     var_type="${3:-string}"
-    sed -ri -e "s/'$1'/\1$(sed_escape_rhs "$(php_escape "$value" "$var_type")")\3/" wp-config.php
+    sed -ri -e "s/'$1'/\1$(sed_escape_rhs "'$value'")\3/" wp-config.php
 }
 
-
-php_escape() {
-    local escaped="$(php -r 'var_export(('"$2"') $argv[1]);' -- "$1")"
-    if [ "$2" = 'string' ] && [ "${escaped:0:1}" = "'" ]; then
-        escaped="${escaped//$'\n'/"' + \"\\n\" + '"}"
-    fi
-    echo "$escaped"
-}
 
 sed_escape_lhs() {
     echo "$@" | sed -e 's/[]\/$*.^|[]/\\&/g'

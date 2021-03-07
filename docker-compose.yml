@@ -15,11 +15,11 @@ services:
    wordpress:
      depends_on:
        - wordpress_db
-     image: roefja/wordpress:latest
+     image: registry.roefja.dev/library/wordpress:latest
+     ports:
+       - 80:8080
      volumes:
        - ./wp-content:/var/www/html/wp-content
-     expose:
-       - 80
      restart: always
      container_name: wordpress
      environment:

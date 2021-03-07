@@ -1,9 +1,9 @@
-FROM roefja/nginx-php
+FROM roefja/nginx-php:php-7
 
 USER root
 
 # Add Wordpress modules
-RUN apk --no-cache add php8-exif php8-fileinfo php8-zip php8-iconv php8-pecl-imagick
+RUN apk --no-cache add php7-exif php7-fileinfo php7-imagick php7-zip php7-iconv
 
 # Get our default plugins
 RUN mkdir -p /usr/src/wordpress/wp-content/plugins/ && \
@@ -23,7 +23,7 @@ COPY ./wordpress-install.sh /temp/
 COPY ./config/wordpress.conf /etc/nginx/conf.d/wordpress.conf
 
 # Configure supervisord
-COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY config/supervisord.php-7.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Download and unzip WordPress
 RUN cd /temp && wget https://wordpress.org/latest.zip && unzip latest.zip && mv wordpress/* /var/www/html

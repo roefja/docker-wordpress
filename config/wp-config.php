@@ -75,6 +75,7 @@ $table_prefix = 'WORDPRESS_TABLE_PREFIX';
  *
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
+
 define( 'WP_DEBUG', false );
 
 /**
