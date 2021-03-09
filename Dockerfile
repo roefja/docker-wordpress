@@ -34,6 +34,6 @@ COPY --chown=nginx:nginx config/wp-config.php /var/www/html/wp-config-sample.php
 # Remove default wordpress plugins
 RUN cd /var/www/html/wp-content/plugins/ && rm hello.php && rm -R akismet
 
-RUN chmod 777 -R /var/www/html/
+RUN chmod -R 777 /var/www/html/
 
 USER nginx

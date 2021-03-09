@@ -74,7 +74,7 @@ cp -R /usr/src/wordpress/wp-content/* /var/www/html/wp-content/
 find /var/www/html/wp-content/ -name "__MACOSX*" -exec rm -rf {} \;
 find /var/www/html/wp-content/ -name ".git" -exec rm -rf {} \;
 
-chmod -R 777 /var/www/html/wp-content
+chmod -R 777 /var/www/html/wp-content/*
 
 rm -R /usr/src/wordpress
 rm -R /temp/*
