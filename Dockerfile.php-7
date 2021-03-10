@@ -3,7 +3,7 @@ FROM roefja/nginx-php:php-7
 USER root
 
 # Add Wordpress modules
-RUN apk --no-cache add php7-exif php7-fileinfo php7-imagick php7-zip php7-iconv
+RUN apk --no-cache add php7-exif php7-fileinfo php7-imagick php7-zip php7-iconv php7-soap
 
 # Get our default plugins
 RUN mkdir -p /usr/src/wordpress/wp-content/plugins/ && \
