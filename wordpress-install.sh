@@ -69,6 +69,13 @@ done
 
 fi
 
+# Copy new Wordpress files
+cp -R /temp/wordpress/* /var/www/html/
+
+# Copy our custom config file
+cp /temp/wp-config-sample.php /var/www/html/
+
+# Copy our includes themes and plugins
 cp -R /usr/src/wordpress/wp-content/* /var/www/html/wp-content/
 
 find /var/www/html/wp-content/ -name "__MACOSX*" -exec rm -rf {} \;
@@ -77,4 +84,4 @@ find /var/www/html/wp-content/ -name ".git" -exec rm -rf {} \;
 chmod -R 777 /var/www/html/wp-content/*
 
 rm -R /usr/src/wordpress
-rm -R /temp/*
+rm -R /temp
