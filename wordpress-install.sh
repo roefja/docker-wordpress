@@ -2,8 +2,6 @@
 
 echo "Installing WordPress"
 
-
-
 cd /var/www/html
 
 if [ ! -e wp-config.php ]; then
@@ -85,3 +83,5 @@ chmod -R 777 /var/www/html/wp-content/*
 
 rm -R /usr/src/wordpress
 rm -R /temp
+
+exit 0
