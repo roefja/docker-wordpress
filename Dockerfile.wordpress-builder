@@ -1,6 +1,6 @@
 FROM alpine:3.13
 
-# Install packages and remove default server definition
+# Install packages needed to create the builder
 RUN apk --no-cache add curl bash unzip
 
 # Get our default plugins
@@ -9,12 +9,6 @@ RUN mkdir -p /usr/src/wordpress/wp-content/plugins/ && \
   wget https://downloads.wordpress.org/plugin/classic-editor.zip && \
   wget https://downloads.wordpress.org/plugin/nginx-cache.zip && \
   cd /usr/src/wordpress/wp-content/plugins/ && sh -c 'unzip -q "*.zip"' && rm *.zip
-
-# Add application
-WORKDIR /var/www/html
-
-# Copy WordPress install script
-COPY ./wordpress-install.sh /temp/
 
 # Copy Extra WP NGINX conf
 COPY ./config/wordpress.conf /etc/nginx/conf.d/wordpress.conf
@@ -25,6 +19,9 @@ COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Download and unzip WordPress
 RUN cd /temp && wget https://wordpress.org/latest.zip && unzip latest.zip && rm latest.zip
 
+# Copy WordPress install script
+COPY ./wordpress-install.sh /temp/
+
 # Remove Hello Dolly and Akismet from WP update files
 RUN cd /temp/wordpress/wp-content/plugins/ && rm hello.php && rm -R akismet
 
@@ -33,5 +30,3 @@ RUN cd /temp/wordpress/wp-content/themes/ && rm -R twentynineteen && rm -R twent
 
 # Copy our modified config-sample file 
 COPY config/wp-config.php /temp/wp-config-sample.php
-
-RUN chmod -R 777 /var/www/html/
