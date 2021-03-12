@@ -2,6 +2,10 @@
 
 echo "Installing WordPress"
 
+
+# Copy our custom config file
+cp /temp/wp-config-sample.php /var/www/html/
+
 cd /var/www/html
 
 if [ ! -e wp-config.php ]; then
@@ -70,8 +74,6 @@ fi
 # Copy new Wordpress files
 cp -R /temp/wordpress/* /var/www/html/
 
-# Copy our custom config file
-cp /temp/wp-config-sample.php /var/www/html/
 
 # Copy our includes themes and plugins
 cp -R /usr/src/wordpress/wp-content/* /var/www/html/wp-content/
