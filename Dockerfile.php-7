@@ -8,7 +8,7 @@ RUN apk --no-cache add php7-exif php7-fileinfo php7-imagick php7-zip php7-iconv 
 # Copy files from wordpress-builder
 COPY --from=wordpress-builder /temp /temp
 COPY --from=wordpress-builder /etc/nginx/conf.d/ /etc/nginx/conf.d/
-COPY --from=wordpress-builder /etc/supervisor/conf.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY --from=wordpress-builder /usr/src/wordpress/ /usr/src/wordpress/
+COPY  ./config/supervisord.php-7.conf /etc/supervisor/conf.d/supervisord.conf
 
 USER nginx
